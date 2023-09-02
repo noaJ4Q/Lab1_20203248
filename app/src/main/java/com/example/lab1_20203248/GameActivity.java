@@ -20,11 +20,14 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGameBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_game, menu);
+        getSupportActionBar().setTitle("TeleAhorcado");
         return true;
     }
 
