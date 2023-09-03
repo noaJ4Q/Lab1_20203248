@@ -3,6 +3,7 @@ package com.example.lab1_20203248;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +22,7 @@ public class GameActivity extends AppCompatActivity {
 
     private String log = "JUEGO";
     ActivityGameBinding binding;
+    private ArrayList<Double> registroJuegos = new ArrayList<>();
     private boolean juegoIniciado = true;
     private ArrayList<String> palabras = new ArrayList<>(Arrays.asList("REDES", "PROPA", "PUCP", "TELITO", "TELECO", "BATI"));
     private String palabraParaAdivinar;
@@ -86,7 +88,6 @@ public class GameActivity extends AppCompatActivity {
             if (index >= 0){ // acierto
                 while (index >= 0){
                     guiones.setCharAt(index, letraSeleccionada.charAt(0));
-                    Log.d(log, guiones+"  intentos res: "+intentosRestantes);
                     binding.palabra.setText(guiones);
                     index = palabraParaAdivinar.indexOf(letraSeleccionada, index+1);
                 }
@@ -110,16 +111,17 @@ public class GameActivity extends AppCompatActivity {
                         binding.piernaIzquierda.setVisibility(View.VISIBLE);
                         break;
                 }
-                Log.d(log, "error  intentos res: "+intentosRestantes);
             }
 
             if (guiones.toString().equals(palabraParaAdivinar)){
                 long tiempoFin = System.currentTimeMillis();
                 double tiempo = (tiempoFin - tiempoInicio)/1000.0;
+                registroJuegos.add(tiempo);
                 juegoIniciado = false;
                 binding.estadoJuego.setText("Ganó / Terminó en "+tiempo+" seg");
             } else if (intentosRestantes == 0) {
                 binding.piernaDerecha.setVisibility(View.VISIBLE);
+                registroJuegos.add(0.00);
                 juegoIniciado = false;
                 binding.estadoJuego.setText("Perdió");
             }
@@ -152,14 +154,9 @@ public class GameActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.estadisticas){
-            View menuItemView = findViewById(R.id.estadisticas);
-            PopupMenu popupMenu = new PopupMenu(GameActivity.this, menuItemView);
-            popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                int id = menuItem.getItemId();
-                return true;
-            });
-            popupMenu.show();
+            Intent intent = new Intent(GameActivity.this, StatisticsActivity.class);
+            intent.putExtra("registroJuegos", registroJuegos);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
