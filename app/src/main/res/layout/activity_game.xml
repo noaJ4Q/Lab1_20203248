@@ -7,20 +7,20 @@
     tools:context=".GameActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonNuevoJuego"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Nuevo juego"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="226dp"
-        android:layout_height="280dp"
+        android:layout_width="232dp"
+        android:layout_height="254dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
@@ -30,11 +30,11 @@
         app:srcCompat="@drawable/antenna_sin_fondo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/palabra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="_ _ _ _ _"
+        android:letterSpacing=".5"
+        android:text="_"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,15 +43,17 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:orientation="vertical"
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNuevoJuego"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/palabra"
+        app:layout_constraintVertical_bias="0.75">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -287,5 +289,77 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cabeza"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="112dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/head" />
+
+    <ImageView
+        android:id="@+id/torso"
+        android:layout_width="10dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cabeza"
+        app:layout_constraintStart_toStartOf="@+id/cabeza"
+        app:layout_constraintTop_toBottomOf="@+id/cabeza"
+        app:srcCompat="@drawable/torso" />
+
+    <ImageView
+        android:id="@+id/brazoDerecho"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/torso"
+        app:layout_constraintStart_toEndOf="@+id/torso"
+        app:layout_constraintTop_toBottomOf="@+id/cabeza"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/brazo_dere_pierna_izq" />
+
+    <ImageView
+        android:id="@+id/brazoIzquierdo"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/torso"
+        app:layout_constraintEnd_toStartOf="@+id/torso"
+        app:layout_constraintTop_toBottomOf="@+id/cabeza"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/brazo_izq_pierna_dere" />
+
+    <ImageView
+        android:id="@+id/piernaIzquierda"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/torso"
+        app:layout_constraintTop_toBottomOf="@+id/torso"
+        app:srcCompat="@drawable/brazo_dere_pierna_izq" />
+
+    <ImageView
+        android:id="@+id/piernaDerecha"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/brazoDerecho"
+        app:layout_constraintTop_toBottomOf="@+id/torso"
+        app:srcCompat="@drawable/brazo_izq_pierna_dere" />
+
+    <TextView
+        android:id="@+id/estadoJuego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/palabra" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
