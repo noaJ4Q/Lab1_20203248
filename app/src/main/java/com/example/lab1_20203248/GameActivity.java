@@ -40,7 +40,11 @@ public class GameActivity extends AppCompatActivity {
                 binding.o, binding.p, binding.q, binding.r, binding.s, binding.t, binding.u,
                 binding.v, binding.w, binding.x, binding.y, binding.z));
 
+        // opcion nuevo juego
         binding.buttonNuevoJuego.setOnClickListener(view -> {
+            if (intentosRestantes > 0){
+                registroJuegos.add(0.00);
+            }
             resetearVariables();
             for (Button button: botones){
                 button.setEnabled(true);
@@ -48,6 +52,7 @@ public class GameActivity extends AppCompatActivity {
             iniciarJuego();
         });
 
+        // comportamiento de botones
         for (Button button: botones){
             button.setOnClickListener(view -> {
                 actualizarGuiones(button);
@@ -121,9 +126,11 @@ public class GameActivity extends AppCompatActivity {
                 binding.estadoJuego.setText("Ganó / Terminó en "+tiempo+" seg");
             } else if (intentosRestantes == 0) {
                 binding.piernaDerecha.setVisibility(View.VISIBLE);
-                registroJuegos.add(0.00);
+                long tiempoFin = System.currentTimeMillis();
+                double tiempo = (tiempoFin - tiempoInicio)/1000.0;
+                registroJuegos.add(tiempo);
                 juegoIniciado = false;
-                binding.estadoJuego.setText("Perdió");
+                binding.estadoJuego.setText("Perdió / Terminó en "+tiempo+" seg");
             }
         }
     }
