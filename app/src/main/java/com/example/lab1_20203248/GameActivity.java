@@ -162,10 +162,22 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.estadisticas){
-            Intent intent = new Intent(GameActivity.this, StatisticsActivity.class);
-            intent.putExtra("registroJuegos", registroJuegos);
-            startActivity(intent);
+        if (itemId == R.id.estadisticasIcon){
+
+            View menuItemView = findViewById(R.id.estadisticasIcon);
+            PopupMenu popupMenu = new PopupMenu(GameActivity.this, menuItemView);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+
+                if (menuItem.getItemId() == R.id.estadisticas){
+                    Intent intent = new Intent(GameActivity.this, StatisticsActivity.class);
+                    intent.putExtra("registroJuegos", registroJuegos);
+                    startActivity(intent);
+                }
+                return true;
+
+            });
+            popupMenu.show();
         }
         return super.onOptionsItemSelected(item);
     }
