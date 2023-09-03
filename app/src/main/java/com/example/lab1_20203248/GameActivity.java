@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.lab1_20203248.databinding.ActivityGameBinding;
 
@@ -118,6 +119,7 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
 
+            // val estado juego
             if (guiones.toString().equals(palabraParaAdivinar)){
                 long tiempoFin = System.currentTimeMillis();
                 double tiempo = (tiempoFin - tiempoInicio)/1000.0;

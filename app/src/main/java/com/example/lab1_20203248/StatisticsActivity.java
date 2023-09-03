@@ -1,10 +1,12 @@
 package com.example.lab1_20203248;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,5 +52,14 @@ public class StatisticsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportActionBar().setTitle("TeleAhorcado");
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
