@@ -24,7 +24,7 @@ public class GameActivity extends AppCompatActivity {
     private String log = "JUEGO";
     ActivityGameBinding binding;
     private ArrayList<Double> registroJuegos = new ArrayList<>();
-    private boolean juegoIniciado = true;
+    private boolean juegoIniciado;
     private ArrayList<String> palabras = new ArrayList<>(Arrays.asList("REDES", "PROPA", "PUCP", "TELITO", "TELECO", "BATI"));
     private String palabraParaAdivinar;
     private int intentosRestantes = 6;
@@ -43,7 +43,8 @@ public class GameActivity extends AppCompatActivity {
 
         // opcion nuevo juego
         binding.buttonNuevoJuego.setOnClickListener(view -> {
-            if (intentosRestantes > 0){
+            if (intentosRestantes > 0 && juegoIniciado == true){
+                juegoIniciado = false;
                 registroJuegos.add(0.00);
             }
             resetearVariables();
@@ -64,6 +65,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void iniciarJuego(){
+        juegoIniciado = true;
         tiempoInicio = System.currentTimeMillis();
 
         Random random = new Random();
